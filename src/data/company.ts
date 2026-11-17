@@ -84,12 +84,12 @@ export const GALLERY_ITEMS: GalleryItem[] = [
   },
   {
     id: '5',
-    title: 'Parque Fabril com Tornos CNC',
+    title: 'Torno CNC Lynx com Ferramenta Acionada',
     category: 'cnc',
     categoryLabel: 'Estrutura CNC',
-    description: 'Máquinas de alta performance preparadas para produções exigentes e contínuas.',
-    image: '/images/torno-cnc-operacao.jpg',
-    specs: ['Ferramenta Acionada', 'Comando Numérico', 'Manutenção Preventiva Rigorosa'],
+    description: 'Torno CNC Lynx preparado para furações radiais e axiais, chavetas e usinagens em ciclo único.',
+    image: '/images/torno-lynx-ferramenta-acionada.jpg',
+    specs: ['Doosan Lynx', 'Ferramenta Acionada', 'Usinagem em Pega Única'],
   },
   {
     id: '6',
