@@ -1,173 +1,192 @@
-import React from 'react';
-import { ArrowRight, CheckCircle2, Cpu, Shield, Sparkles, MessageCircle } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { ArrowRight, MessageCircle, ChevronLeft, ChevronRight } from 'lucide-react';
 import { COMPANY_INFO } from '../data/company';
 
 interface HeroProps {
   onOpenQuoteModal: () => void;
 }
 
+const HERO_SLIDES = [
+  {
+    src: '/images/hq/pecas-anodizadas-roxo.jpg',
+    tag: 'Fresamento 4º eixo',
+    caption: 'Peças em alumínio anodizado usinadas com furações transversais e rebaixos de precisão',
+  },
+  {
+    src: '/images/hq/doosan-lynx-220lm.jpg',
+    tag: 'Doosan Lynx 220LM',
+    caption: 'Centro de torneamento com ferramenta acionada para usinagem em pega única',
+  },
+  {
+    src: '/images/hq/bloco-eixos-cruzados.jpg',
+    tag: 'Geometria complexa',
+    caption: 'Corpo usinado com eixos cruzados, canais de vedação e furo central escalonado',
+  },
+  {
+    src: '/images/hq/parque-fabril-panoramica.jpg',
+    tag: 'Parque fabril próprio',
+    caption: 'Instalações no Bairro do Limão com centros Romi Discovery e tornos CNC',
+  },
+  {
+    src: '/images/hq/lote-seriado-recartilhado.jpg',
+    tag: 'Produção seriada',
+    caption: 'Lotes seriados com recartilhado uniforme, roscas calibradas e inspeção dimensional',
+  },
+  {
+    src: '/images/hq/guia-onda-rf-aluminio.jpg',
+    tag: 'Eletrônica e RF',
+    caption: 'Guias de onda e carcaças em alumínio espelhado para telecomunicações',
+  },
+];
+
 export const Hero: React.FC<HeroProps> = ({ onOpenQuoteModal }) => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  useEffect(() => {
+    if (isPaused) return;
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
+    }, 4500);
+    return () => clearInterval(timer);
+  }, [isPaused]);
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + HERO_SLIDES.length) % HERO_SLIDES.length);
+  };
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
+  };
+
+  const slide = HERO_SLIDES[currentSlide];
+
   return (
-    <section id="hero" className="relative pt-8 pb-16 md:pt-14 md:pb-24 overflow-hidden bg-grid-pattern">
-      {/* Decorative ambient gradients */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-blue-600/15 blur-[120px] pointer-events-none rounded-full" />
-      <div className="absolute top-10 right-10 w-96 h-96 bg-indigo-500/10 blur-[100px] pointer-events-none rounded-full" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid lg:grid-cols-12 gap-12 items-center">
+    <section id="hero" className="bg-slate-50 border-b border-slate-200 w-full">
+      <div className="w-full max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 py-12 lg:py-16">
+        
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           
-          {/* Left Column - Copy & Actions */}
-          <div className="lg:col-span-7 flex flex-col items-start text-left">
+          {/* Left Column */}
+          <div className="lg:col-span-6 xl:col-span-7 flex flex-col items-start text-left">
             
-            {/* Pill Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900/90 border border-blue-500/30 text-blue-300 text-xs font-semibold mb-6 shadow-sm">
-              <Sparkles className="w-3.5 h-3.5 text-blue-400" />
-              <span>Indústria 4.0 & Mais de 30 Anos de Engenharia de Precisão</span>
-            </div>
-
-            {/* Headline */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-tech font-extrabold tracking-tight text-white leading-[1.1] mb-6">
-              Usinagem CNC de{' '}
-              <span className="bg-gradient-to-r from-blue-400 via-sky-300 to-indigo-400 bg-clip-text text-transparent">
-                Alta Precisão
-              </span>{' '}
-              & Produção Seriada
-            </h1>
-
-            {/* Description */}
-            <p className="text-base sm:text-lg text-slate-300 mb-8 leading-relaxed max-w-2xl font-normal">
-              Atendemos indústrias automotivas, médicas, eletrônicas e de telecomunicações com tornos CNC equipados com ferramenta acionada. Realizamos usinagens complexas em pega única, garantindo tolerâncias rigorosas e prazos de entrega confiáveis.
+            <p className="text-xs font-semibold uppercase tracking-widest text-blue-800 mb-4">
+              Usinagem industrial em São Paulo desde 1992
             </p>
 
-            {/* Micro Highlights */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-9 w-full max-w-xl">
-              <div className="flex items-center gap-2.5 text-xs sm:text-sm text-slate-200 bg-slate-900/60 border border-slate-800/80 px-3.5 py-2.5 rounded-lg">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>Tornos com Ferramenta Acionada</span>
-              </div>
-              <div className="flex items-center gap-2.5 text-xs sm:text-sm text-slate-200 bg-slate-900/60 border border-slate-800/80 px-3.5 py-2.5 rounded-lg">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>Furação Radial & Axial em Pega Única</span>
-              </div>
-              <div className="flex items-center gap-2.5 text-xs sm:text-sm text-slate-200 bg-slate-900/60 border border-slate-800/80 px-3.5 py-2.5 rounded-lg">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>Materiais Ferrosos & Não-Ferrosos</span>
-              </div>
-              <div className="flex items-center gap-2.5 text-xs sm:text-sm text-slate-200 bg-slate-900/60 border border-slate-800/80 px-3.5 py-2.5 rounded-lg">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>Lotes Pequenos, Médios e Seriados</span>
-              </div>
-            </div>
+            <h1 className="text-4xl sm:text-5xl xl:text-[56px] font-extrabold tracking-tight text-[#0B192C] leading-[1.1] mb-6">
+              Usinagem CNC de alta precisão e produção seriada
+            </h1>
 
-            {/* Primary Action Buttons */}
+            <p className="text-base sm:text-lg text-slate-600 mb-8 leading-relaxed max-w-2xl">
+              Fabricação de peças técnicas seriadas, especiais e protótipos para os setores automotivo, odontológico, eletrônico e industrial. Estrutura própria com tornos Doosan de ferramenta acionada, centros Romi 4º eixo e sala climatizada de metrologia tridimensional TESA 3D.
+            </p>
+
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
               <button
                 onClick={onOpenQuoteModal}
-                className="inline-flex items-center justify-center gap-3 px-7 py-3.5 rounded-xl bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold text-base shadow-xl shadow-blue-900/40 hover:shadow-blue-600/40 transition-all transform hover:-translate-y-0.5 active:translate-y-0"
+                className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-md bg-blue-800 hover:bg-[#0B192C] text-white font-bold text-base shadow-md transition-colors"
               >
-                <span>Solicitar Orçamento Técnico</span>
-                <ArrowRight className="w-4 h-4" />
+                <span>Solicitar orçamento técnico</span>
+                <ArrowRight className="w-5 h-5" />
               </button>
               
               <a
-                href={`https://wa.me/${COMPANY_INFO.whatsapp}?text=Ol%C3%A1%21+Gostaria+de+enviar+um+desenho+t%C3%A9cnico+para+cota%C3%A7%C3%A3o+de+pe%C3%A7as+com+a+LASEC.`}
+                href={`https://wa.me/${COMPANY_INFO.whatsapp}?text=Ol%C3%A1%2C+Alexandre.+Gostaria+de+enviar+um+desenho+t%C3%A9cnico+para+cota%C3%A7%C3%A3o+na+LASEC.`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 hover:text-white font-medium text-base border border-slate-700/80 hover:border-emerald-500/50 transition-all shadow-md group"
+                className="inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-md bg-emerald-700 hover:bg-emerald-600 text-white font-bold text-base shadow-md transition-colors"
               >
-                <MessageCircle className="w-4 h-4 text-emerald-400 group-hover:scale-110 transition-transform" />
-                <span>Enviar Desenho via WhatsApp</span>
+                <MessageCircle className="w-5 h-5" />
+                <span>Falar via WhatsApp</span>
               </a>
             </div>
 
           </div>
 
-          {/* Right Column - Visual Showcase Card */}
-          <div className="lg:col-span-5 relative">
-            <div className="relative mx-auto max-w-md lg:max-w-none">
-              
-              {/* Main Image Frame */}
-              <div className="relative rounded-2xl overflow-hidden border border-slate-700/60 bg-slate-900 shadow-2xl shadow-black/80 group">
-                <img
-                  src="/images/pecas-precisao.jpg"
-                  alt="Peças usinadas em torno CNC com precisão milimétrica - LASEC"
-                  className="w-full h-[380px] sm:h-[430px] object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
-                
-                {/* Overlay details */}
-                <div className="absolute bottom-4 left-4 right-4 p-4 rounded-xl bg-slate-950/80 backdrop-blur-md border border-slate-800">
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="text-xs uppercase tracking-wider text-blue-400 font-bold">Produção Real LASEC</span>
-                    <span className="text-[11px] font-mono text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-800/60">
-                      Tolerância Rigorosa
-                    </span>
+          {/* Right Column - Clean Rotating Banner */}
+          <div className="lg:col-span-6 xl:col-span-5">
+            <div
+              className="relative rounded-xl overflow-hidden border border-slate-200 bg-white shadow-lg group"
+              onMouseEnter={() => setIsPaused(true)}
+              onMouseLeave={() => setIsPaused(false)}
+            >
+              <div className="relative h-[360px] sm:h-[420px] xl:h-[450px] w-full overflow-hidden bg-slate-100">
+                {HERO_SLIDES.map((s, idx) => (
+                  <img
+                    key={s.src}
+                    src={s.src}
+                    alt={s.caption}
+                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+                      idx === currentSlide ? 'opacity-100' : 'opacity-0 pointer-events-none'
+                    }`}
+                  />
+                ))}
+                <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent pointer-events-none" />
+              </div>
+
+              <button
+                type="button"
+                onClick={prevSlide}
+                aria-label="Foto anterior"
+                className="absolute left-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/90 hover:bg-white text-slate-900 shadow-md opacity-0 group-hover:opacity-100 transition-opacity"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+              <button
+                type="button"
+                onClick={nextSlide}
+                aria-label="Próxima foto"
+                className="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/90 hover:bg-white text-slate-900 shadow-md opacity-0 group-hover:opacity-100 transition-opacity"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+
+              <div className="absolute bottom-0 inset-x-0 p-4 sm:p-5">
+                <div className="flex items-center justify-between gap-2 mb-1">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-blue-300">
+                    {slide.tag}
+                  </span>
+                  <div className="flex items-center gap-1.5">
+                    {HERO_SLIDES.map((_, idx) => (
+                      <button
+                        key={idx}
+                        type="button"
+                        onClick={() => setCurrentSlide(idx)}
+                        aria-label={`Slide ${idx + 1}`}
+                        className={`h-1.5 rounded-full transition-all ${
+                          idx === currentSlide ? 'w-5 bg-white' : 'w-1.5 bg-white/40 hover:bg-white/70'
+                        }`}
+                      />
+                    ))}
                   </div>
-                  <p className="text-sm font-semibold text-white">
-                    Usinagem de peças seriadas com chavetas e furos axiais conjugados
-                  </p>
                 </div>
+                <p className="text-sm font-medium text-white">
+                  {slide.caption}
+                </p>
               </div>
-
-              {/* Floating Badge 1 - Top Left */}
-              <div className="absolute -top-5 -left-4 sm:-left-6 bg-slate-900/90 backdrop-blur-md border border-blue-500/40 p-3.5 rounded-xl shadow-xl hidden sm:flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-blue-600/20 flex items-center justify-center text-blue-400">
-                  <Cpu className="w-5 h-5" />
-                </div>
-                <div>
-                  <div className="text-xs text-slate-400 font-medium">Usinagem em</div>
-                  <div className="text-sm font-tech font-bold text-white">Pega Única (1 Setup)</div>
-                </div>
-              </div>
-
-              {/* Floating Badge 2 - Bottom Right */}
-              <div className="absolute -bottom-5 -right-4 sm:-right-6 bg-slate-900/90 backdrop-blur-md border border-emerald-500/40 p-3.5 rounded-xl shadow-xl hidden sm:flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-emerald-600/20 flex items-center justify-center text-emerald-400">
-                  <Shield className="w-5 h-5" />
-                </div>
-                <div>
-                  <div className="text-xs text-slate-400 font-medium">Controle de Qualidade</div>
-                  <div className="text-sm font-tech font-bold text-white">100% Rastreabilidade</div>
-                </div>
-              </div>
-
             </div>
           </div>
 
         </div>
 
-        {/* Bottom Trust Indicators & Numbers Strip */}
-        <div className="mt-16 pt-8 border-t border-slate-800/80 grid grid-cols-2 md:grid-cols-4 gap-6">
-          <div className="flex flex-col items-center sm:items-start p-4 rounded-xl bg-slate-900/30 border border-slate-800/40">
-            <span className="text-3xl sm:text-4xl font-tech font-extrabold text-blue-400 mb-1">
-              +30 Anos
-            </span>
-            <span className="text-xs sm:text-sm font-semibold text-white">Experiência Industrial</span>
-            <span className="text-xs text-slate-400 mt-0.5">Fundada em Outubro de 1992</span>
+        {/* Clean Specification Strip */}
+        <div className="mt-12 pt-8 border-t border-slate-200 grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8">
+          <div>
+            <div className="text-2xl sm:text-3xl font-bold text-[#0B192C]">+30 anos</div>
+            <div className="text-xs sm:text-sm text-slate-600 mt-1">Fundada em outubro de 1992</div>
           </div>
-
-          <div className="flex flex-col items-center sm:items-start p-4 rounded-xl bg-slate-900/30 border border-slate-800/40">
-            <span className="text-3xl sm:text-4xl font-tech font-extrabold text-white mb-1">
-              100%
-            </span>
-            <span className="text-xs sm:text-sm font-semibold text-white">Sede Própria</span>
-            <span className="text-xs text-slate-400 mt-0.5">Bairro do Limão, São Paulo</span>
+          <div>
+            <div className="text-2xl sm:text-3xl font-bold text-[#0B192C]">Sede própria</div>
+            <div className="text-xs sm:text-sm text-slate-600 mt-1">Bairro do Limão, São Paulo - SP</div>
           </div>
-
-          <div className="flex flex-col items-center sm:items-start p-4 rounded-xl bg-slate-900/30 border border-slate-800/40">
-            <span className="text-3xl sm:text-4xl font-tech font-extrabold text-indigo-400 mb-1">
-              CNC
-            </span>
-            <span className="text-xs sm:text-sm font-semibold text-white">Ferramenta Acionada</span>
-            <span className="text-xs text-slate-400 mt-0.5">Menor tempo de ciclo e setup</span>
+          <div>
+            <div className="text-2xl sm:text-3xl font-bold text-[#0B192C]">4º eixo e Lynx</div>
+            <div className="text-xs sm:text-sm text-slate-600 mt-1">Tornos com ferramenta acionada</div>
           </div>
-
-          <div className="flex flex-col items-center sm:items-start p-4 rounded-xl bg-slate-900/30 border border-slate-800/40">
-            <span className="text-3xl sm:text-4xl font-tech font-extrabold text-emerald-400 mb-1">
-              Brasil
-            </span>
-            <span className="text-xs sm:text-sm font-semibold text-white">Atendimento Nacional</span>
-            <span className="text-xs text-slate-400 mt-0.5">Logística para todo o país</span>
+          <div>
+            <div className="text-2xl sm:text-3xl font-bold text-[#0B192C]">TESA 3D</div>
+            <div className="text-xs sm:text-sm text-slate-600 mt-1">Sala de medição climatizada</div>
           </div>
         </div>
 

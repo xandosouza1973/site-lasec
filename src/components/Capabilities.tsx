@@ -1,5 +1,5 @@
 import React from 'react';
-import { Cog, Cpu, Layers, Disc, CheckCircle, ArrowRight } from 'lucide-react';
+import { Cpu, Layers, Disc, Check, ArrowRight } from 'lucide-react';
 import { MATERIALS_LIST } from '../data/company';
 
 interface CapabilitiesProps {
@@ -8,157 +8,141 @@ interface CapabilitiesProps {
 
 export const Capabilities: React.FC<CapabilitiesProps> = ({ onOpenQuoteModal }) => {
   return (
-    <section id="capacidades" className="py-20 bg-slate-900/50 relative border-t border-slate-800/60">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="capacidades" className="py-16 lg:py-20 bg-slate-50 border-b border-slate-200 w-full">
+      <div className="w-full max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12">
         
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-950/80 border border-blue-800/60 text-blue-400 text-xs font-semibold mb-3">
-            <Cog className="w-3.5 h-3.5 animate-spin" style={{ animationDuration: '8s' }} />
-            <span>Processos Produtivos Modernos</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl font-tech font-bold text-white tracking-tight mb-4">
-            Capacidades Técnicas & Usinagem de Precisão
+        <div className="max-w-3xl mb-12">
+          <p className="text-xs font-semibold uppercase tracking-widest text-blue-800 mb-2">
+            Processos produtivos
+          </p>
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#0B192C] tracking-tight mb-3">
+            Capacidades técnicas e usinagem de precisão
           </h2>
-          <p className="text-base text-slate-300 leading-relaxed">
-            Com estrutura tecnológica e parque de máquinas CNC próprio, a LASEC entrega soluções sob medida para requisitos rigorosos de acabamento, concentricidade e tolerância.
+          <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+            Estrutura fabril equipada com tornos e centros de usinagem preparados para requisitos rigorosos de acabamento, concentricidade e tolerância geométrica.
           </p>
         </div>
 
-        {/* 3 Main Capability Cards */}
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
+        <div className="grid md:grid-cols-3 gap-6 lg:gap-8 mb-12">
           
-          {/* Card 1 */}
-          <div className="bg-slate-950 border border-slate-800 rounded-2xl p-7 hover:border-blue-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-blue-950/30 flex flex-col justify-between group">
+          <div className="bg-white border border-slate-200 rounded-xl p-7 flex flex-col justify-between">
             <div>
-              <div className="w-12 h-12 rounded-xl bg-blue-600/10 border border-blue-500/20 text-blue-400 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition-all">
-                <Cpu className="w-6 h-6" />
+              <div className="w-10 h-10 rounded-lg bg-slate-50 border border-slate-200 text-[#0B192C] flex items-center justify-center mb-5">
+                <Cpu className="w-5 h-5" />
               </div>
-              <h3 className="text-xl font-tech font-bold text-white mb-3">
-                Tornos com Ferramenta Acionada
+              <h3 className="text-xl font-bold text-[#0B192C] mb-3">
+                Tornos com ferramenta acionada
               </h3>
-              <p className="text-sm text-slate-300 leading-relaxed mb-6">
-                Tecnologia que viabiliza torneamento e fresamento em uma <strong>pega única</strong>. Executamos furos radiais e axiais, chavetas, fresamento de sextavados e figuras complexas sem troca de máquina.
+              <p className="text-sm text-slate-600 leading-relaxed mb-5">
+                Torneamento e fresamento em <strong>pega única</strong>. Executamos furos radiais e axiais, chavetas, fresamento de sextavados e figuras complexas sem troca de máquina.
               </p>
-              <ul className="space-y-2.5 text-xs text-slate-300 mb-6">
-                <li className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0" />
+              <ul className="space-y-2.5 text-sm text-slate-700 mb-4">
+                <li className="flex items-start gap-2">
+                  <Check className="w-4 h-4 text-blue-700 shrink-0 mt-0.5" />
                   <span>Eliminação de erro acumulado por re-fixação</span>
                 </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0" />
+                <li className="flex items-start gap-2">
+                  <Check className="w-4 h-4 text-blue-700 shrink-0 mt-0.5" />
                   <span>Furação axial e transversal sincronizada</span>
                 </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span>Redução substancial do tempo de ciclo</span>
+                <li className="flex items-start gap-2">
+                  <Check className="w-4 h-4 text-blue-700 shrink-0 mt-0.5" />
+                  <span>Menor tempo de ciclo e entrega ágil</span>
                 </li>
               </ul>
-            </div>
-            <div className="pt-4 border-t border-slate-800/80">
-              <span className="text-xs font-semibold text-blue-400">Destaque de Alta Precisão</span>
             </div>
           </div>
 
-          {/* Card 2 */}
-          <div className="bg-slate-950 border border-slate-800 rounded-2xl p-7 hover:border-indigo-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-indigo-950/30 flex flex-col justify-between group">
+          <div className="bg-white border border-slate-200 rounded-xl p-7 flex flex-col justify-between">
             <div>
-              <div className="w-12 h-12 rounded-xl bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-indigo-600 group-hover:text-white transition-all">
-                <Layers className="w-6 h-6" />
+              <div className="w-10 h-10 rounded-lg bg-slate-50 border border-slate-200 text-[#0B192C] flex items-center justify-center mb-5">
+                <Layers className="w-5 h-5" />
               </div>
-              <h3 className="text-xl font-tech font-bold text-white mb-3">
-                Peças Seriadas & Lotes Flexíveis
+              <h3 className="text-xl font-bold text-[#0B192C] mb-3">
+                Centro Discovery 760 com 4º eixo
               </h3>
-              <p className="text-sm text-slate-300 leading-relaxed mb-6">
-                Capacidade instalada para fornecimento de lotes médios e grandes com alta repetibilidade e constância de medidas para integração direta nas linhas de montagem dos clientes.
+              <p className="text-sm text-slate-600 leading-relaxed mb-5">
+                Centro de usinagem vertical Romi Discovery 760 equipado com mesa giratória de 4º eixo para geometrias prismáticas complexas e contornos cilíndricos.
               </p>
-              <ul className="space-y-2.5 text-xs text-slate-300 mb-6">
-                <li className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span>Programação de entregas programadas (Just-in-Time)</span>
+              <ul className="space-y-2.5 text-sm text-slate-700 mb-4">
+                <li className="flex items-start gap-2">
+                  <Check className="w-4 h-4 text-blue-700 shrink-0 mt-0.5" />
+                  <span>Fresamento contínuo em múltiplos ângulos</span>
                 </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span>Inspeção dimensional por amostragem e 100%</span>
+                <li className="flex items-start gap-2">
+                  <Check className="w-4 h-4 text-blue-700 shrink-0 mt-0.5" />
+                  <span>Usinagem de blocos coletores e caixas</span>
                 </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span>Estabilidade em produções de alto volume</span>
+                <li className="flex items-start gap-2">
+                  <Check className="w-4 h-4 text-blue-700 shrink-0 mt-0.5" />
+                  <span>Interpolação helicoidal e canais espirais</span>
                 </li>
               </ul>
-            </div>
-            <div className="pt-4 border-t border-slate-800/80">
-              <span className="text-xs font-semibold text-indigo-400">Escalabilidade Industrial</span>
             </div>
           </div>
 
-          {/* Card 3 */}
-          <div className="bg-slate-950 border border-slate-800 rounded-2xl p-7 hover:border-emerald-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-emerald-950/30 flex flex-col justify-between group">
+          <div className="bg-white border border-slate-200 rounded-xl p-7 flex flex-col justify-between">
             <div>
-              <div className="w-12 h-12 rounded-xl bg-emerald-600/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-emerald-600 group-hover:text-white transition-all">
-                <Disc className="w-6 h-6" />
+              <div className="w-10 h-10 rounded-lg bg-slate-50 border border-slate-200 text-[#0B192C] flex items-center justify-center mb-5">
+                <Disc className="w-5 h-5" />
               </div>
-              <h3 className="text-xl font-tech font-bold text-white mb-3">
-                Protótipos & Ferramentais
+              <h3 className="text-xl font-bold text-[#0B192C] mb-3">
+                Lotes seriados e metrologia 3D
               </h3>
-              <p className="text-sm text-slate-300 leading-relaxed mb-6">
-                Desenvolvimento ágil de amostras e peças-piloto para homologação técnica e testes funcionais, além de histórico consolidado em estamparia e ferramentais de conformação.
+              <p className="text-sm text-slate-600 leading-relaxed mb-5">
+                Capacidade instalada para lotes contínuos com repetibilidade dimensional assegurada pela máquina de medição por coordenadas TESA Micro-Hite 3D.
               </p>
-              <ul className="space-y-2.5 text-xs text-slate-300 mb-6">
-                <li className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span>Apoio técnico na análise do desenho de engenharia</span>
+              <ul className="space-y-2.5 text-sm text-slate-700 mb-4">
+                <li className="flex items-start gap-2">
+                  <Check className="w-4 h-4 text-blue-700 shrink-0 mt-0.5" />
+                  <span>Entregas programadas conforme demanda</span>
                 </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span>Confecção de ferramental sob medida</span>
+                <li className="flex items-start gap-2">
+                  <Check className="w-4 h-4 text-blue-700 shrink-0 mt-0.5" />
+                  <span>Inspeção em sala climatizada com laudo</span>
                 </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span>Agilidade no envio de peças para aprovação</span>
+                <li className="flex items-start gap-2">
+                  <Check className="w-4 h-4 text-blue-700 shrink-0 mt-0.5" />
+                  <span>Homologação prévia de amostras (FAI)</span>
                 </li>
               </ul>
-            </div>
-            <div className="pt-4 border-t border-slate-800/80">
-              <span className="text-xs font-semibold text-emerald-400">Engenharia Sob Medida</span>
             </div>
           </div>
 
         </div>
 
         {/* Materials Technical Grid */}
-        <div className="bg-slate-950 border border-slate-800/90 rounded-2xl p-6 sm:p-8">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 pb-6 border-b border-slate-800">
+        <div className="bg-white border border-slate-200 rounded-xl p-6 sm:p-8">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 pb-5 border-b border-slate-200">
             <div>
-              <span className="text-xs font-mono uppercase tracking-wider text-blue-400 font-semibold">Tabela de Matérias-Primas</span>
-              <h3 className="text-2xl font-tech font-bold text-white mt-1">Materiais Ferrosos, Não-Ferrosos & Polímeros</h3>
+              <p className="text-xs font-semibold uppercase tracking-widest text-blue-800">Matérias-primas</p>
+              <h3 className="text-xl sm:text-2xl font-bold text-[#0B192C] mt-1">
+                Materiais ferrosos, não-ferrosos e polímeros de engenharia
+              </h3>
             </div>
             <button
               onClick={onOpenQuoteModal}
-              className="inline-flex items-center gap-2 text-xs font-semibold text-blue-400 hover:text-blue-300 transition-colors"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-blue-800 hover:text-blue-950 transition-colors"
             >
               <span>Consultar liga específica</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+              <ArrowRight className="w-4 h-4" />
             </button>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {MATERIALS_LIST.map((matGroup) => (
-              <div key={matGroup.category} className="bg-slate-900/60 p-4 rounded-xl border border-slate-800/80">
-                <h4 className="text-sm font-semibold text-blue-300 mb-3 flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+              <div key={matGroup.category} className="bg-slate-50 p-5 rounded-lg border border-slate-200">
+                <h4 className="text-sm font-bold text-[#0B192C] mb-3">
                   {matGroup.category}
                 </h4>
-                <div className="flex flex-wrap gap-1.5">
+                <ul className="space-y-1.5 text-sm text-slate-600">
                   {matGroup.items.map((item) => (
-                    <span
-                      key={item}
-                      className="text-[11px] font-mono bg-slate-800/90 text-slate-300 px-2 py-1 rounded border border-slate-700/60"
-                    >
-                      {item}
-                    </span>
+                    <li key={item} className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-blue-700 shrink-0" />
+                      <span>{item}</span>
+                    </li>
                   ))}
-                </div>
+                </ul>
               </div>
             ))}
           </div>

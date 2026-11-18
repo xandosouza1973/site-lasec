@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
+import { StrategicDifferentiators } from './components/StrategicDifferentiators';
 import { Capabilities } from './components/Capabilities';
 import { MachineryShowcase } from './components/MachineryShowcase';
+import { MetrologySection } from './components/MetrologySection';
+import { QualityComplianceSection } from './components/QualityComplianceSection';
 import { PartsGallery } from './components/PartsGallery';
 import { Sectors } from './components/Sectors';
 import { HistorySection } from './components/HistorySection';
@@ -36,21 +39,30 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col selection:bg-blue-600 selection:text-white">
-      {/* Top Fixed / Sticky Navigation */}
+    <div className="w-full min-h-screen bg-white text-slate-900 flex flex-col selection:bg-blue-700 selection:text-white overflow-x-hidden">
+      {/* Top Fixed / Sticky Navigation (Full Width) */}
       <Navbar onOpenQuoteModal={() => handleOpenQuoteModal()} />
 
-      <main className="flex-grow">
-        {/* Hero Section */}
+      <main className="flex-grow w-full">
+        {/* Hero Section (Grand, Full Screen Height & Full Width) */}
         <Hero onOpenQuoteModal={() => handleOpenQuoteModal()} />
 
-        {/* Technical Capabilities */}
+        {/* Strategic Differentiators (6 Core Pillars inspired by Proturbo) */}
+        <StrategicDifferentiators onOpenQuoteModal={() => handleOpenQuoteModal()} />
+
+        {/* Technical Capabilities & Materials Table */}
         <Capabilities onOpenQuoteModal={() => handleOpenQuoteModal()} />
 
-        {/* CNC Machinery & Live Tooling Showcase */}
+        {/* CNC Machinery Fleet (Doosan Lynx & Romi Discovery 4º Eixo) */}
         <MachineryShowcase onOpenQuoteModal={() => handleOpenQuoteModal()} />
 
-        {/* Gallery of Machined Parts */}
+        {/* Dedicated Metrology & TESA 3D Cleanroom Section */}
+        <MetrologySection onOpenQuoteModal={() => handleOpenQuoteModal()} />
+
+        {/* Quality, Standards & ESG / Sustainability Section */}
+        <QualityComplianceSection />
+
+        {/* Gallery of 17 Real Machined Parts */}
         <PartsGallery onSelectPartForQuote={handleSelectPartForQuote} />
 
         {/* Industrial Sectors */}
@@ -62,7 +74,7 @@ export function App() {
         {/* Interactive Quote / RFQ Section */}
         <QuoteSection initialPartName={selectedPartForQuote} />
 
-        {/* Map & Physical Location */}
+        {/* Map & Physical Location (Bairro do Limão) */}
         <ContactSection />
       </main>
 

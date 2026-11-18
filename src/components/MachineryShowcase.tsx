@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Cpu, Zap, ArrowRight, Gauge, Layers, ShieldCheck } from 'lucide-react';
-import { COMPANY_INFO } from '../data/company';
+import { Zap, Gauge, Layers } from 'lucide-react';
+import { MACHINERY_LIST } from '../data/company';
 
 interface MachineryShowcaseProps {
   onOpenQuoteModal: () => void;
@@ -9,90 +9,73 @@ interface MachineryShowcaseProps {
 const LYNX_PHOTOS = [
   {
     id: 'geral',
-    title: 'Torno CNC Lynx - Ferramenta Acionada',
-    subtitle: 'Visão externa operacional da máquina',
-    src: '/images/torno-lynx-ferramenta-acionada.jpg',
-    tag: 'Torno CNC Lynx'
+    title: 'Torno CNC Doosan Lynx 220LM — Ferramenta acionada',
+    subtitle: 'Centro de torneamento multieixo em operação na LASEC',
+    src: '/images/hq/doosan-lynx-220lm.jpg',
+    tag: 'Doosan Lynx 220LM',
   },
   {
-    id: 'detalhe',
-    title: 'Centro de Furação e Rosqueamento',
-    subtitle: 'Furação radial e axial em ciclo único',
-    src: '/images/torno-lynx-detalhe.png',
-    tag: 'Ferramenta Acionada'
+    id: 'panoramica',
+    title: 'Visão geral do parque fabril',
+    subtitle: 'Centros Romi Discovery 4º eixo e tornos Doosan',
+    src: '/images/hq/parque-fabril-panoramica.jpg',
+    tag: 'Parque fabril',
   },
   {
     id: 'interno',
-    title: 'Usinagem Interna e Torre de Ferramentas',
-    subtitle: 'Setup para furação e fresamento conjugados',
+    title: 'Usinagem interna e torre de ferramentas',
+    subtitle: 'Setup para furação radial, axial e fresamento conjugados',
     src: '/images/torno-lynx-interno.png',
-    tag: 'Pega Única'
+    tag: 'Pega única',
   },
   {
     id: 'painel',
-    title: 'Painel de Comando Numérico Computadorizado',
+    title: 'Painel de comando numérico computadorizado',
     subtitle: 'Programação de tolerâncias micrométricas',
     src: '/images/torno-lynx-painel.jpg',
-    tag: 'Comando CNC'
-  }
+    tag: 'Comando CNC',
+  },
 ];
 
 export const MachineryShowcase: React.FC<MachineryShowcaseProps> = ({ onOpenQuoteModal }) => {
   const [selectedPhotoIndex, setSelectedPhotoIndex] = useState(0);
-
   const currentPhoto = LYNX_PHOTOS[selectedPhotoIndex];
 
   return (
-    <section id="maquinario" className="py-20 bg-slate-950 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="maquinario" className="py-16 lg:py-20 bg-[#0B192C] text-white w-full">
+      <div className="w-full max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12">
         
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-950/80 border border-indigo-800/60 text-indigo-400 text-xs font-semibold mb-3">
-              <Cpu className="w-3.5 h-3.5" />
-              <span>Parque Fabril & Tecnologia CNC</span>
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-tech font-bold text-white tracking-tight">
-              Tornos CNC Lynx com Ferramenta Acionada
+            <p className="text-xs font-semibold uppercase tracking-widest text-blue-300 mb-2">
+              Tecnologia e equipamentos
+            </p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
+              Parque de máquinas e tornos CNC
             </h2>
             <p className="text-sm sm:text-base text-slate-300 mt-2 max-w-2xl">
-              Equipamento de alta rigidez e precisão para usinagem em ciclo único: fresamento, furação radial, axial, rosqueamento e abertura de chavetas sem operações secundárias.
+              Tornos Doosan Lynx com ferramenta acionada em pega única e centros de usinagem Romi Discovery com 4º eixo.
             </p>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <span className="text-xs font-mono text-emerald-400 bg-emerald-950/80 border border-emerald-800/60 px-3 py-1.5 rounded-lg flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-              Doosan Lynx em Operação na LASEC
-            </span>
           </div>
         </div>
 
-        {/* Highlight Showcase Grid */}
-        <div className="grid lg:grid-cols-12 gap-8 items-center">
+        {/* Feature Spotlight: Torno Doosan Lynx */}
+        <div className="grid lg:grid-cols-12 gap-8 xl:gap-12 items-center mb-16 bg-slate-900/50 border border-slate-800 rounded-xl p-5 sm:p-8">
           
-          {/* Machine Real Photo Card with Thumbnail Switcher */}
+          {/* Machine Photo with Switcher */}
           <div className="lg:col-span-7 flex flex-col gap-3">
-            <div className="relative rounded-2xl overflow-hidden border border-slate-800 bg-slate-900 group shadow-2xl">
+            <div className="relative rounded-lg overflow-hidden border border-slate-800 bg-slate-950">
               <img
                 src={currentPhoto.src}
                 alt={currentPhoto.title}
-                className="w-full h-[380px] sm:h-[460px] object-cover group-hover:scale-103 transition-transform duration-500"
+                className="w-full h-[360px] sm:h-[440px] object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent pointer-events-none" />
+              <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-slate-950/95 via-slate-950/50 to-transparent pointer-events-none" />
               
-              {/* Top tag */}
-              <div className="absolute top-4 left-4">
-                <span className="text-xs font-mono uppercase tracking-wider px-3 py-1 rounded-md bg-slate-950/90 text-blue-300 border border-slate-700/80 font-bold backdrop-blur-md">
-                  {currentPhoto.tag}
-                </span>
-              </div>
-
-              {/* Bottom caption */}
-              <div className="absolute bottom-4 left-4 right-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 rounded-xl bg-slate-950/85 backdrop-blur-md border border-slate-800">
+              <div className="absolute bottom-4 left-4 right-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <div>
-                  <div className="text-white font-tech font-bold text-sm sm:text-base">
+                  <div className="text-white font-bold text-sm sm:text-base">
                     {currentPhoto.title}
                   </div>
                   <div className="text-xs text-slate-300 mt-0.5">
@@ -101,23 +84,23 @@ export const MachineryShowcase: React.FC<MachineryShowcaseProps> = ({ onOpenQuot
                 </div>
                 <button
                   onClick={onOpenQuoteModal}
-                  className="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold shrink-0 transition-colors shadow-md shadow-blue-950"
+                  className="px-4 py-2 rounded-md bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold shrink-0 transition-colors"
                 >
-                  Cotar neste Torno
+                  Cotar neste torno
                 </button>
               </div>
             </div>
 
             {/* Thumbnails Navigator */}
-            <div className="grid grid-cols-4 gap-2 pt-1">
+            <div className="grid grid-cols-4 gap-2.5">
               {LYNX_PHOTOS.map((photo, idx) => (
                 <button
                   key={photo.id}
                   onClick={() => setSelectedPhotoIndex(idx)}
-                  className={`relative rounded-xl overflow-hidden h-20 border transition-all text-left group ${
+                  className={`relative rounded-lg overflow-hidden h-20 border transition-all text-left ${
                     selectedPhotoIndex === idx
-                      ? 'border-blue-500 ring-2 ring-blue-500/40 opacity-100 scale-[1.02]'
-                      : 'border-slate-800 opacity-60 hover:opacity-100 hover:border-slate-700'
+                      ? 'border-blue-400 opacity-100'
+                      : 'border-slate-700 opacity-60 hover:opacity-100'
                   }`}
                 >
                   <img
@@ -125,8 +108,7 @@ export const MachineryShowcase: React.FC<MachineryShowcaseProps> = ({ onOpenQuot
                     alt={photo.title}
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-colors" />
-                  <span className="absolute bottom-1 left-1.5 right-1.5 text-[9px] font-mono text-white truncate drop-shadow block bg-black/60 px-1 py-0.5 rounded">
+                  <span className="absolute bottom-1 left-1 right-1 text-[10px] font-medium text-white truncate bg-slate-950/80 px-1.5 py-0.5 rounded text-center block">
                     {photo.tag}
                   </span>
                 </button>
@@ -134,63 +116,91 @@ export const MachineryShowcase: React.FC<MachineryShowcaseProps> = ({ onOpenQuot
             </div>
           </div>
 
-          {/* Machine Technical Specs & Benefits */}
+          {/* Machine Technical Highlights */}
           <div className="lg:col-span-5 flex flex-col gap-4">
-            
-            <div className="p-5 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-blue-500/40 transition-colors">
+            <div className="p-5 rounded-lg bg-slate-900/70 border border-slate-800">
               <div className="flex items-center gap-3 mb-2">
-                <div className="w-8 h-8 rounded-lg bg-blue-600/20 text-blue-400 flex items-center justify-center">
-                  <Zap className="w-4 h-4" />
-                </div>
-                <h4 className="text-base font-tech font-bold text-white">Vantagem da Pega Única no Lynx</h4>
+                <Zap className="w-5 h-5 text-blue-400 shrink-0" />
+                <h4 className="text-base font-bold text-white">Usinagem em pega única</h4>
               </div>
-              <p className="text-xs text-slate-300 leading-relaxed">
-                Ao usinar a peça em uma única fixação no <strong>torno CNC Lynx</strong>, eliminamos a transferência para fresadoras ou furadeiras secundárias. Isso acaba com o erro de concentricidade e desvios de fixação repetida.
+              <p className="text-sm text-slate-300 leading-relaxed">
+                Ao usinar a peça em uma única fixação no torno CNC Doosan Lynx, eliminamos a necessidade de troca para furadeiras ou fresadoras secundárias, garantindo concentricidade rigorosa.
               </p>
             </div>
 
-            <div className="p-5 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-indigo-500/40 transition-colors">
+            <div className="p-5 rounded-lg bg-slate-900/70 border border-slate-800">
               <div className="flex items-center gap-3 mb-2">
-                <div className="w-8 h-8 rounded-lg bg-indigo-600/20 text-indigo-400 flex items-center justify-center">
-                  <Gauge className="w-4 h-4" />
-                </div>
-                <h4 className="text-base font-tech font-bold text-white">Furações Radiais, Axiais & Chavetas</h4>
+                <Gauge className="w-5 h-5 text-blue-400 shrink-0" />
+                <h4 className="text-base font-bold text-white">Furações radiais, axiais e chavetas</h4>
               </div>
-              <p className="text-xs text-slate-300 leading-relaxed">
-                Com o cabeçote de <strong>ferramenta acionada</strong>, executamos furações radiais e axiais, fresamento de sextavados, canais helicoidais e chavetas simultaneamente ao torneamento.
+              <p className="text-sm text-slate-300 leading-relaxed">
+                Com a ferramenta acionada, realizamos furações radiais e axiais, sextavados, ranhuras e abertura de chavetas simultaneamente ao torneamento.
               </p>
             </div>
 
-            <div className="p-5 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-emerald-500/40 transition-colors">
+            <div className="p-5 rounded-lg bg-slate-900/70 border border-slate-800">
               <div className="flex items-center gap-3 mb-2">
-                <div className="w-8 h-8 rounded-lg bg-emerald-600/20 text-emerald-400 flex items-center justify-center">
-                  <Layers className="w-4 h-4" />
-                </div>
-                <h4 className="text-base font-tech font-bold text-white">Lotes Flexíveis & Repetibilidade</h4>
+                <Layers className="w-5 h-5 text-blue-400 shrink-0" />
+                <h4 className="text-base font-bold text-white">Lotes seriados e repetibilidade</h4>
               </div>
-              <p className="text-xs text-slate-300 leading-relaxed">
-                Capacidade instalada para lotes médios, grandes e protótipos de alta complexidade com medição rigorosa e calibração constante de pastilhas e ferramentas.
+              <p className="text-sm text-slate-300 leading-relaxed">
+                Repetibilidade e padronização para lotes médios, grandes e protótipos em ritmo contínuo.
               </p>
             </div>
-
-            <div className="p-4 rounded-xl bg-blue-950/40 border border-blue-900/60 flex items-center justify-between">
-              <div className="flex items-center gap-2 text-xs text-slate-300">
-                <ShieldCheck className="w-4 h-4 text-blue-400" />
-                <span>Pronto para orçar com desenho técnico</span>
-              </div>
-              <a
-                href={`https://wa.me/${COMPANY_INFO.whatsapp}?text=Ol%C3%A1%2C+gostaria+de+or%C3%A7ar+uma+pe%C3%A7a+no+torno+CNC+Lynx+com+ferramenta+acionada.`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xs font-semibold text-emerald-400 hover:text-emerald-300 flex items-center gap-1"
-              >
-                <span>Falar no WhatsApp</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </a>
-            </div>
-
           </div>
 
+        </div>
+
+        {/* Complete Machinery Fleet Grid */}
+        <div>
+          <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <h3 className="text-2xl font-bold text-white">
+              Relação completa de equipamentos
+            </h3>
+            <span className="text-xs text-slate-400">Instalações próprias no Bairro do Limão, São Paulo</span>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {MACHINERY_LIST.map((mach) => (
+              <div
+                key={mach.id}
+                className="bg-slate-900/60 border border-slate-800 rounded-xl overflow-hidden hover:border-slate-700 transition-colors flex flex-col justify-between"
+              >
+                <div className="relative h-52 overflow-hidden bg-slate-950">
+                  <img
+                    src={mach.image}
+                    alt={mach.name}
+                    className="w-full h-full object-cover"
+                  />
+                  <span className="absolute top-3 left-3 text-xs font-semibold px-2.5 py-1 rounded bg-slate-950/85 text-blue-300 border border-slate-700">
+                    {mach.brand}
+                  </span>
+                </div>
+
+                <div className="p-5 flex flex-col flex-grow justify-between">
+                  <div>
+                    <h4 className="text-base font-bold text-white mb-2">
+                      {mach.name}
+                    </h4>
+                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
+                      {mach.description}
+                    </p>
+                  </div>
+
+                  <div className="pt-3 border-t border-slate-800 flex flex-wrap gap-1.5">
+                    {mach.highlights.map((hl, i) => (
+                      <span
+                        key={i}
+                        className="text-xs text-slate-300 bg-slate-950 px-2.5 py-0.5 rounded border border-slate-800"
+                      >
+                        {hl}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
       </div>

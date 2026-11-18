@@ -14,116 +14,92 @@ export const PartsGallery: React.FC<PartsGalleryProps> = ({ onSelectPartForQuote
     ? GALLERY_ITEMS
     : GALLERY_ITEMS.filter((item) => item.category === filter);
 
+  const filterButtons = [
+    { id: 'all', label: 'Todas as peças' },
+    { id: '4eixo', label: 'Fresamento 4º eixo' },
+    { id: 'torneamento', label: 'Tornos e ferramenta acionada' },
+    { id: 'seriados', label: 'Lotes seriados' },
+    { id: 'nao-ferrosos', label: 'Latão e alumínio' },
+  ];
+
   return (
-    <section id="galeria" className="py-20 bg-slate-900/40 relative border-t border-slate-800/60">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="galeria" className="py-16 lg:py-20 bg-white border-b border-slate-200 w-full">
+      <div className="w-full max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12">
         
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-950/80 border border-blue-800/60 text-blue-400 text-xs font-semibold mb-3">
-              <Eye className="w-3.5 h-3.5" />
-              <span>Portfólio & Amostras de Produção</span>
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-tech font-bold text-white tracking-tight">
-              Galeria de Peças Usinadas
+            <p className="text-xs font-semibold uppercase tracking-widest text-blue-800 mb-2">
+              Portfólio técnico
+            </p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#0B192C] tracking-tight">
+              Galeria de componentes usinados
             </h2>
-            <p className="text-sm sm:text-base text-slate-300 mt-2 max-w-2xl">
-              Fotografias reais das peças e componentes fabricados em nossas instalações em São Paulo.
+            <p className="text-sm sm:text-base text-slate-600 mt-2 max-w-2xl">
+              Peças reais fabricadas na LASEC: furações radiais e axiais, fresamento em 4º eixo, latão, aços especiais e alumínio anodizado.
             </p>
           </div>
 
           {/* Filter Pills */}
           <div className="flex flex-wrap items-center gap-2">
-            <button
-              onClick={() => setFilter('all')}
-              className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
-                filter === 'all'
-                  ? 'bg-blue-600 text-white shadow-md shadow-blue-950'
-                  : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800'
-              }`}
-            >
-              Todas as Peças
-            </button>
-            <button
-              onClick={() => setFilter('seriados')}
-              className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
-                filter === 'seriados'
-                  ? 'bg-blue-600 text-white shadow-md shadow-blue-950'
-                  : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800'
-              }`}
-            >
-              Lotes Seriados
-            </button>
-            <button
-              onClick={() => setFilter('cnc')}
-              className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
-                filter === 'cnc'
-                  ? 'bg-blue-600 text-white shadow-md shadow-blue-950'
-                  : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800'
-              }`}
-            >
-              Usinagem CNC
-            </button>
-            <button
-              onClick={() => setFilter('complexas')}
-              className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
-                filter === 'complexas'
-                  ? 'bg-blue-600 text-white shadow-md shadow-blue-950'
-                  : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800'
-              }`}
-            >
-              Especiais & Ferramentaria
-            </button>
+            {filterButtons.map((btn) => (
+              <button
+                key={btn.id}
+                onClick={() => setFilter(btn.id)}
+                className={`px-3.5 py-2 rounded-md text-xs font-semibold transition-colors ${
+                  filter === btn.id
+                    ? 'bg-[#0B192C] text-white'
+                    : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                }`}
+              >
+                {btn.label}
+              </button>
+            ))}
           </div>
         </div>
 
         {/* Gallery Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {filteredItems.map((item) => (
             <div
               key={item.id}
-              className="group bg-slate-950 border border-slate-800 rounded-2xl overflow-hidden hover:border-blue-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-black/60 flex flex-col justify-between"
+              className="group bg-white border border-slate-200 rounded-xl overflow-hidden hover:border-slate-300 hover:shadow-md transition-all flex flex-col justify-between"
             >
-              {/* Image Container */}
               <div
-                className="relative h-64 overflow-hidden cursor-pointer bg-slate-900"
+                className="relative h-64 sm:h-72 overflow-hidden cursor-pointer bg-slate-100"
                 onClick={() => setSelectedItem(item)}
               >
                 <img
                   src={item.image}
                   alt={item.title}
-                  className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-500"
+                  className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
                 
-                <span className="absolute top-3 left-3 text-[10px] font-mono uppercase tracking-wider px-2.5 py-1 rounded-md bg-slate-950/80 backdrop-blur-md text-blue-300 border border-slate-700/60 font-semibold">
+                <span className="absolute top-3 left-3 text-xs font-semibold px-2.5 py-1 rounded bg-white/95 text-[#0B192C] border border-slate-200 shadow-xs">
                   {item.categoryLabel}
                 </span>
 
                 <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <span className="p-2 rounded-lg bg-slate-900/90 text-white backdrop-blur-md border border-slate-700 block">
+                  <span className="p-2 rounded-md bg-white/95 text-[#0B192C] border border-slate-200 block shadow-xs">
                     <Eye className="w-4 h-4" />
                   </span>
                 </div>
               </div>
 
-              {/* Info & Action */}
-              <div className="p-5 flex flex-col flex-grow justify-between">
+              <div className="p-6 flex flex-col flex-grow justify-between">
                 <div>
-                  <h3 className="text-base font-tech font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">
+                  <h3 className="text-base sm:text-lg font-bold text-[#0B192C] mb-2">
                     {item.title}
                   </h3>
-                  <p className="text-xs text-slate-300 leading-relaxed mb-4">
+                  <p className="text-sm text-slate-600 leading-relaxed mb-4">
                     {item.description}
                   </p>
 
-                  {/* Badges */}
                   <div className="flex flex-wrap gap-1.5 mb-5">
                     {item.specs.map((spec, i) => (
                       <span
                         key={i}
-                        className="text-[10px] font-mono text-slate-400 bg-slate-900 px-2 py-0.5 rounded border border-slate-800"
+                        className="text-xs text-slate-700 bg-slate-100 px-2.5 py-1 rounded border border-slate-200"
                       >
                         {spec}
                       </span>
@@ -133,10 +109,10 @@ export const PartsGallery: React.FC<PartsGalleryProps> = ({ onSelectPartForQuote
 
                 <button
                   onClick={() => onSelectPartForQuote(item.title)}
-                  className="w-full flex items-center justify-center gap-2 py-2.5 rounded-lg bg-slate-900 hover:bg-blue-600 text-slate-200 hover:text-white text-xs font-semibold border border-slate-800 hover:border-blue-500 transition-all"
+                  className="w-full flex items-center justify-center gap-2 py-2.5 rounded-md bg-slate-50 hover:bg-[#0B192C] text-slate-800 hover:text-white text-xs sm:text-sm font-semibold border border-slate-200 hover:border-[#0B192C] transition-colors"
                 >
-                  <span>Cotar Peça com Esta Geometria</span>
-                  <ArrowUpRight className="w-3.5 h-3.5" />
+                  <span>Cotar peça similar</span>
+                  <ArrowUpRight className="w-4 h-4" />
                 </button>
               </div>
             </div>
@@ -148,39 +124,39 @@ export const PartsGallery: React.FC<PartsGalleryProps> = ({ onSelectPartForQuote
       {/* Lightbox Modal */}
       {selectedItem && (
         <div
-          className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-xs flex items-center justify-center p-4"
           onClick={() => setSelectedItem(null)}
         >
           <div
-            className="bg-slate-950 border border-slate-800 rounded-2xl max-w-3xl w-full overflow-hidden shadow-2xl relative"
+            className="bg-white border border-slate-200 rounded-xl max-w-4xl w-full overflow-hidden shadow-2xl relative"
             onClick={(e) => e.stopPropagation()}
           >
             <button
               onClick={() => setSelectedItem(null)}
-              className="absolute top-4 right-4 z-10 p-2 rounded-full bg-slate-900/80 text-slate-300 hover:text-white border border-slate-700 hover:bg-slate-800 transition-colors"
+              className="absolute top-4 right-4 z-10 p-2 rounded-full bg-white text-slate-700 hover:text-slate-950 border border-slate-200 shadow-sm"
             >
               <X className="w-5 h-5" />
             </button>
 
-            <div className="max-h-[60vh] bg-black overflow-hidden flex items-center justify-center">
+            <div className="max-h-[65vh] bg-slate-100 overflow-hidden flex items-center justify-center">
               <img
                 src={selectedItem.image}
                 alt={selectedItem.title}
-                className="max-h-[60vh] w-auto object-contain"
+                className="max-h-[65vh] w-auto object-contain"
               />
             </div>
 
-            <div className="p-6">
+            <div className="p-6 sm:p-8">
               <div className="flex items-center justify-between gap-4 mb-2">
-                <span className="text-xs uppercase tracking-wider text-blue-400 font-mono font-semibold">
+                <span className="text-xs uppercase tracking-wider text-blue-800 font-semibold">
                   {selectedItem.categoryLabel}
                 </span>
-                <span className="text-xs text-slate-400">LASEC Usinagem e Precisão</span>
+                <span className="text-xs text-slate-500">LASEC Usinagem de precisão</span>
               </div>
-              <h3 className="text-xl font-tech font-bold text-white mb-2">
+              <h3 className="text-xl sm:text-2xl font-bold text-[#0B192C] mb-2">
                 {selectedItem.title}
               </h3>
-              <p className="text-sm text-slate-300 mb-4">
+              <p className="text-sm text-slate-600 mb-5">
                 {selectedItem.description}
               </p>
 
@@ -188,17 +164,17 @@ export const PartsGallery: React.FC<PartsGalleryProps> = ({ onSelectPartForQuote
                 {selectedItem.specs.map((spec, i) => (
                   <span
                     key={i}
-                    className="text-xs font-mono text-emerald-400 bg-emerald-950/60 border border-emerald-800/60 px-2.5 py-1 rounded"
+                    className="text-xs text-slate-700 bg-slate-100 border border-slate-200 px-3 py-1 rounded"
                   >
-                    ✓ {spec}
+                    {spec}
                   </span>
                 ))}
               </div>
 
-              <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-800">
+              <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-200">
                 <button
                   onClick={() => setSelectedItem(null)}
-                  className="px-4 py-2 text-xs font-semibold text-slate-400 hover:text-white"
+                  className="px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900"
                 >
                   Fechar
                 </button>
@@ -208,9 +184,9 @@ export const PartsGallery: React.FC<PartsGalleryProps> = ({ onSelectPartForQuote
                     setSelectedItem(null);
                     onSelectPartForQuote(title);
                   }}
-                  className="px-5 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold transition-colors"
+                  className="px-5 py-2.5 rounded-md bg-[#0B192C] hover:bg-blue-900 text-white text-sm font-semibold transition-colors"
                 >
-                  Solicitar Orçamento Deste Modelo
+                  Solicitar orçamento deste modelo
                 </button>
               </div>
             </div>

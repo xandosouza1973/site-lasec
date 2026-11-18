@@ -1,70 +1,65 @@
 import React from 'react';
-import { Award, Building2, Factory } from 'lucide-react';
+import { Building2, Factory } from 'lucide-react';
 import { TIMELINE } from '../data/company';
 
 export const HistorySection: React.FC = () => {
   return (
-    <section id="historia" className="py-20 bg-slate-900/60 relative border-t border-slate-800/60">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="historia" className="py-16 lg:py-20 bg-white border-b border-slate-200 w-full">
+      <div className="w-full max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12">
         
         <div className="grid lg:grid-cols-12 gap-12 items-center">
           
-          {/* Left Column - Authority Narrative */}
           <div className="lg:col-span-5">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-950/80 border border-blue-800/60 text-blue-400 text-xs font-semibold mb-4">
-              <Award className="w-3.5 h-3.5" />
-              <span>Nossa Trajetória de Solidez</span>
-            </div>
+            <p className="text-xs font-semibold uppercase tracking-widest text-blue-800 mb-2">
+              História e solidez
+            </p>
 
-            <h2 className="text-3xl sm:text-4xl font-tech font-bold text-white tracking-tight mb-6">
-              Mais de 30 Anos de Engenharia & Precisão Fabril
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#0B192C] tracking-tight mb-5">
+              Mais de 30 anos de engenharia e precisão fabril
             </h2>
 
-            <div className="space-y-4 text-slate-300 text-sm leading-relaxed mb-8">
+            <div className="space-y-4 text-slate-600 text-sm sm:text-base leading-relaxed mb-8">
               <p>
-                A <strong>LASEC / MALELO</strong> foi fundada em <strong>outubro de 1992</strong> com o propósito de oferecer serviços especializados em usinagem mecânica, estamparia e confecção de ferramental técnico.
+                A <strong>LASEC / MALELO</strong> foi fundada em <strong>outubro de 1992</strong> com o propósito de oferecer serviços de usinagem mecânica, estamparia e confecção de ferramental técnico.
               </p>
               <p>
-                No primeiro semestre de 2000, conquistamos nossa <strong>sede própria no tradicional polo industrial do Bairro do Limão, em São Paulo</strong>, consolidando a estabilidade patrimonial e a capacidade logística da empresa.
+                No primeiro semestre de 2000, conquistamos nossa <strong>sede própria no Bairro do Limão, em São Paulo</strong>, consolidando a infraestrutura física e permitindo investimentos contínuos em tecnologia.
               </p>
               <p>
-                Em 2003, demos um salto tecnológico com a incorporação das nossas primeiras <strong>máquinas CNC</strong>, ingressando no mercado de produção seriada e especializando-nos em geometrias de alta complexidade em materiais ferrosos e não-ferrosos.
+                Em 2003, incorporamos os primeiros equipamentos <strong>CNC</strong>, ingressando no mercado de produção seriada e especializando-nos em peças de alta complexidade em materiais ferrosos, não-ferrosos e polímeros.
               </p>
             </div>
 
-            {/* Credibility highlights */}
             <div className="grid grid-cols-2 gap-4">
-              <div className="p-4 rounded-xl bg-slate-950 border border-slate-800">
-                <Building2 className="w-6 h-6 text-blue-400 mb-2" />
-                <div className="text-sm font-tech font-bold text-white">Sede Própria</div>
-                <div className="text-xs text-slate-400 mt-1">Bairro do Limão - SP</div>
+              <div className="p-5 rounded-xl bg-slate-50 border border-slate-200">
+                <Building2 className="w-6 h-6 text-[#0B192C] mb-2" />
+                <div className="text-sm font-bold text-[#0B192C]">Sede própria</div>
+                <div className="text-xs text-slate-600 mt-1">Bairro do Limão — São Paulo</div>
               </div>
-              <div className="p-4 rounded-xl bg-slate-950 border border-slate-800">
-                <Factory className="w-6 h-6 text-indigo-400 mb-2" />
-                <div className="text-sm font-tech font-bold text-white">Parque CNC</div>
-                <div className="text-xs text-slate-400 mt-1">Ferramenta Acionada</div>
+              <div className="p-5 rounded-xl bg-slate-50 border border-slate-200">
+                <Factory className="w-6 h-6 text-[#0B192C] mb-2" />
+                <div className="text-sm font-bold text-[#0B192C]">Parque CNC e 3D</div>
+                <div className="text-xs text-slate-600 mt-1">Ferramenta acionada e metrologia</div>
               </div>
             </div>
           </div>
 
-          {/* Right Column - Interactive Timeline */}
           <div className="lg:col-span-7">
-            <div className="relative pl-6 sm:pl-8 border-l-2 border-blue-600/30 space-y-8 sm:space-y-10 my-4">
+            <div className="relative pl-8 border-l-2 border-slate-200 space-y-6 my-2">
               {TIMELINE.map((item, index) => (
-                <div key={index} className="relative group">
-                  {/* Timeline point dot */}
-                  <div className="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4 h-4 rounded-full bg-slate-950 border-2 border-blue-500 group-hover:bg-blue-400 group-hover:scale-125 transition-all shadow-md shadow-blue-500/50" />
+                <div key={index} className="relative">
+                  <div className="absolute -left-[39px] top-2 w-3.5 h-3.5 rounded-full bg-[#0B192C] border-2 border-white shadow-xs" />
                   
-                  <div className="bg-slate-950 border border-slate-800/90 rounded-xl p-5 hover:border-blue-500/50 transition-colors">
+                  <div className="bg-slate-50 border border-slate-200 rounded-xl p-5">
                     <div className="flex items-center gap-3 mb-1.5">
-                      <span className="text-xs font-mono font-bold px-2 py-0.5 rounded bg-blue-950 text-blue-400 border border-blue-800/60">
+                      <span className="text-xs font-bold px-2.5 py-0.5 rounded bg-[#0B192C] text-white">
                         {item.year}
                       </span>
-                      <h3 className="text-base font-tech font-bold text-white">
+                      <h3 className="text-base font-bold text-[#0B192C]">
                         {item.title}
                       </h3>
                     </div>
-                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                    <p className="text-sm text-slate-600 leading-relaxed">
                       {item.description}
                     </p>
                   </div>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FileText, CheckCircle2, MessageSquare, Mail, Phone, Clock, ArrowRight } from 'lucide-react';
+import { Check, MessageSquare, Mail, Phone, Clock, ArrowRight } from 'lucide-react';
 import { COMPANY_INFO } from '../data/company';
 
 interface QuoteSectionProps {
@@ -12,9 +12,9 @@ export const QuoteSection: React.FC<QuoteSectionProps> = ({ initialPartName = ''
     empresa: '',
     email: '',
     telefone: '',
-    material: 'Aço Inox',
+    material: 'Aço Inox (304, 316, 420)',
     quantidade: '100 a 500 peças',
-    servico: 'Produção Seriada CNC',
+    servico: 'Produção seriada CNC',
     temDesenho: 'Sim (PDF / CAD / STEP)',
     detalhes: initialPartName ? `Referência: ${initialPartName}` : '',
   });
@@ -33,19 +33,18 @@ export const QuoteSection: React.FC<QuoteSectionProps> = ({ initialPartName = ''
 *Empresa:* ${formData.empresa || 'Não informada'}
 *E-mail:* ${formData.email || 'Não informado'}
 *Telefone/Whats:* ${formData.telefone || 'Não informado'}
-*Material Desejado:* ${formData.material}
-*Quantidade Estimada:* ${formData.quantidade}
-*Tipo de Serviço:* ${formData.servico}
-*Possui Desenho Técnico:* ${formData.temDesenho}
+*Material:* ${formData.material}
+*Quantidade:* ${formData.quantidade}
+*Serviço:* ${formData.servico}
+*Desenho técnico:* ${formData.temDesenho}
 *Detalhes:* ${formData.detalhes || 'Nenhum detalhe adicional'}
----------------------------------------
-Enviado através do novo site da LASEC.`;
+---------------------------------------`;
     return encodeURIComponent(text);
   };
 
   const getMailtoHref = () => {
-    const subject = encodeURIComponent(`Solicitação de Cotação - ${formData.empresa || formData.nome || 'Cliente'}`);
-    const body = encodeURIComponent(`Olá equipe LASEC,
+    const subject = encodeURIComponent(`Solicitação de cotação - ${formData.empresa || formData.nome || 'Cliente'}`);
+    const body = encodeURIComponent(`Olá ${COMPANY_INFO.contactPerson} / equipe LASEC,
 
 Gostaria de solicitar uma cotação para usinagem:
 
@@ -54,113 +53,106 @@ Gostaria de solicitar uma cotação para usinagem:
 - Telefone: ${formData.telefone}
 - Material: ${formData.material}
 - Quantidade: ${formData.quantidade}
-- Tipo de Serviço: ${formData.servico}
-- Tem desenho técnico: ${formData.temDesenho}
+- Tipo de serviço: ${formData.servico}
+- Possui desenho técnico: ${formData.temDesenho}
 - Detalhes adicionais: ${formData.detalhes}
 
-(Em anexo segue nosso desenho técnico/especificação para análise).`);
-    return `mailto:${COMPANY_INFO.emailOrcamento}?subject=${subject}&body=${body}`;
+(Em anexo segue nosso desenho técnico para análise).`);
+    return `mailto:${COMPANY_INFO.emailOrcamento}?cc=${COMPANY_INFO.emailCompras}&subject=${subject}&body=${body}`;
   };
 
   return (
-    <section id="orcamento" className="py-20 bg-slate-950 relative border-t border-slate-800/80">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="orcamento" className="py-16 lg:py-20 bg-slate-50 border-b border-slate-200 w-full">
+      <div className="w-full max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12">
         
         <div className="grid lg:grid-cols-12 gap-12">
           
-          {/* Left Column: Context & Direct Contact */}
           <div className="lg:col-span-5 flex flex-col justify-between">
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-950/80 border border-blue-800/60 text-blue-400 text-xs font-semibold mb-4">
-                <FileText className="w-3.5 h-3.5" />
-                <span>Atendimento Comercial & Engenharia</span>
-              </div>
-
-              <h2 className="text-3xl sm:text-4xl font-tech font-bold text-white tracking-tight mb-4">
-                Solicite uma Cotação para o seu Projeto
-              </h2>
-
-              <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-8">
-                Envie suas especificações, tolerâncias ou desenho técnico. Avaliamos a viabilidade de fabricação e respondemos com agilidade e transparência.
+              <p className="text-xs font-semibold uppercase tracking-widest text-blue-800 mb-2">
+                Atendimento técnico e comercial
               </p>
 
-              {/* Trust list */}
-              <div className="space-y-3.5 mb-8">
+              <h2 className="text-3xl sm:text-4xl font-bold text-[#0B192C] tracking-tight mb-4">
+                Solicite uma cotação para o seu projeto
+              </h2>
+
+              <p className="text-sm sm:text-base text-slate-600 leading-relaxed mb-8">
+                Envie suas especificações, tolerâncias ou desenho técnico. Nossa equipe de engenharia e o responsável comercial <strong>{COMPANY_INFO.contactPerson}</strong> analisam a viabilidade de fabricação com retorno ágil.
+              </p>
+
+              <div className="space-y-4 mb-8">
                 <div className="flex items-start gap-3">
-                  <div className="p-1 rounded bg-blue-900/50 text-blue-400 mt-0.5">
-                    <CheckCircle2 className="w-4 h-4" />
-                  </div>
+                  <Check className="w-5 h-5 text-blue-700 shrink-0 mt-0.5" />
                   <div>
-                    <span className="text-sm font-semibold text-white block">Sigilo e Confidencialidade (NDA)</span>
-                    <span className="text-xs text-slate-400">Seus projetos e desenhos industriais tratados com absoluto sigilo.</span>
+                    <span className="text-sm font-bold text-[#0B192C] block">Sigilo e confidencialidade (NDA)</span>
+                    <span className="text-xs sm:text-sm text-slate-600">Seus projetos e arquivos 3D tratados com sigilo industrial.</span>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <div className="p-1 rounded bg-blue-900/50 text-blue-400 mt-0.5">
-                    <CheckCircle2 className="w-4 h-4" />
-                  </div>
+                  <Check className="w-5 h-5 text-blue-700 shrink-0 mt-0.5" />
                   <div>
-                    <span className="text-sm font-semibold text-white block">Avaliação Técnica DFM</span>
-                    <span className="text-xs text-slate-400">Engenharia voltada para reduzir custos e tempos de usinagem.</span>
+                    <span className="text-sm font-bold text-[#0B192C] block">Análise técnica DFM</span>
+                    <span className="text-xs sm:text-sm text-slate-600">Otimização de processos voltada para redução de custo e tempo de ciclo.</span>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <div className="p-1 rounded bg-blue-900/50 text-blue-400 mt-0.5">
-                    <CheckCircle2 className="w-4 h-4" />
-                  </div>
+                  <Check className="w-5 h-5 text-blue-700 shrink-0 mt-0.5" />
                   <div>
-                    <span className="text-sm font-semibold text-white block">Atendimento por E-mail ou WhatsApp</span>
-                    <span className="text-xs text-slate-400">Canal direto com quem entende de chão de fábrica e medição.</span>
+                    <span className="text-sm font-bold text-[#0B192C] block">Relatório dimensional TESA 3D</span>
+                    <span className="text-xs sm:text-sm text-slate-600">Garantia dimensional emitida por máquina tridimensional em sala climatizada.</span>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Quick Contact Box */}
-            <div className="p-5 rounded-2xl bg-slate-900 border border-slate-800 text-xs space-y-2.5">
-              <div className="text-slate-400 font-mono uppercase tracking-wider text-[11px]">Canais Rápidos:</div>
-              <div className="flex items-center gap-2 text-slate-200">
-                <Phone className="w-4 h-4 text-blue-400" />
-                <span>{COMPANY_INFO.phone}</span>
+            <div className="p-6 rounded-xl bg-white border border-slate-200 text-sm space-y-3">
+              <div className="text-xs font-semibold uppercase tracking-wider text-slate-500">Canais diretos</div>
+              <div className="flex items-center gap-3 text-slate-800">
+                <Phone className="w-4 h-4 text-blue-800 shrink-0" />
+                <span className="font-semibold">{COMPANY_INFO.phone}</span>
               </div>
-              <div className="flex items-center gap-2 text-slate-200">
-                <Mail className="w-4 h-4 text-blue-400" />
-                <span>{COMPANY_INFO.emailOrcamento}</span>
+              <div className="flex items-center gap-3 text-slate-800">
+                <MessageSquare className="w-4 h-4 text-emerald-700 shrink-0" />
+                <span className="font-semibold">WhatsApp: {COMPANY_INFO.whatsappDisplay}</span>
               </div>
-              <div className="flex items-center gap-2 text-slate-200">
-                <Clock className="w-4 h-4 text-emerald-400" />
+              <div className="flex items-center gap-3 text-slate-700">
+                <Mail className="w-4 h-4 text-blue-800 shrink-0" />
+                <span>{COMPANY_INFO.emailOrcamento} / {COMPANY_INFO.emailCompras}</span>
+              </div>
+              <div className="flex items-center gap-3 text-slate-700">
+                <Clock className="w-4 h-4 text-blue-800 shrink-0" />
                 <span>{COMPANY_INFO.openingHours}</span>
               </div>
             </div>
           </div>
 
-          {/* Right Column: Form or Success State */}
           <div className="lg:col-span-7">
-            <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 sm:p-8 shadow-2xl relative">
+            <div className="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 shadow-sm">
               
               {!submitted ? (
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form onSubmit={handleSubmit} className="space-y-5">
                   
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-semibold text-slate-300 mb-1.5">
-                        Seu Nome *
+                      <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+                        Seu nome *
                       </label>
                       <input
                         type="text"
                         required
                         value={formData.nome}
                         onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
-                        placeholder="Ex: Carlos Silva"
-                        className="w-full px-3.5 py-2.5 rounded-lg bg-slate-950 border border-slate-700 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-blue-500 transition-colors"
+                        placeholder="Ex.: Carlos Silva"
+                        className="w-full px-3.5 py-2.5 rounded-md bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:border-[#0B192C] focus:bg-white transition-colors"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-xs font-semibold text-slate-300 mb-1.5">
-                        Empresa / Indústria *
+                      <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+                        Empresa / indústria *
                       </label>
                       <input
                         type="text"
@@ -168,28 +160,28 @@ Gostaria de solicitar uma cotação para usinagem:
                         value={formData.empresa}
                         onChange={(e) => setFormData({ ...formData, empresa: e.target.value })}
                         placeholder="Nome da sua empresa"
-                        className="w-full px-3.5 py-2.5 rounded-lg bg-slate-950 border border-slate-700 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-blue-500 transition-colors"
+                        className="w-full px-3.5 py-2.5 rounded-md bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:border-[#0B192C] focus:bg-white transition-colors"
                       />
                     </div>
                   </div>
 
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-semibold text-slate-300 mb-1.5">
-                        E-mail Corporativo *
+                      <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+                        E-mail corporativo *
                       </label>
                       <input
                         type="email"
                         required
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        placeholder="carlos@suaempresa.com.br"
-                        className="w-full px-3.5 py-2.5 rounded-lg bg-slate-950 border border-slate-700 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-blue-500 transition-colors"
+                        placeholder="carlos@empresa.com.br"
+                        className="w-full px-3.5 py-2.5 rounded-md bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:border-[#0B192C] focus:bg-white transition-colors"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-xs font-semibold text-slate-300 mb-1.5">
+                      <label className="block text-xs font-semibold text-slate-700 mb-1.5">
                         Telefone / WhatsApp *
                       </label>
                       <input
@@ -198,39 +190,39 @@ Gostaria de solicitar uma cotação para usinagem:
                         value={formData.telefone}
                         onChange={(e) => setFormData({ ...formData, telefone: e.target.value })}
                         placeholder="(11) 99999-9999"
-                        className="w-full px-3.5 py-2.5 rounded-lg bg-slate-950 border border-slate-700 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-blue-500 transition-colors"
+                        className="w-full px-3.5 py-2.5 rounded-md bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:border-[#0B192C] focus:bg-white transition-colors"
                       />
                     </div>
                   </div>
 
                   <div className="grid sm:grid-cols-3 gap-4">
                     <div>
-                      <label className="block text-xs font-semibold text-slate-300 mb-1.5">
-                        Matéria-Prima
+                      <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+                        Matéria-prima
                       </label>
                       <select
                         value={formData.material}
                         onChange={(e) => setFormData({ ...formData, material: e.target.value })}
-                        className="w-full px-3 py-2.5 rounded-lg bg-slate-950 border border-slate-700 text-white text-xs focus:outline-none focus:border-blue-500"
+                        className="w-full px-3 py-2.5 rounded-md bg-slate-50 border border-slate-300 text-slate-900 text-xs sm:text-sm focus:outline-none focus:border-[#0B192C]"
                       >
                         <option>Aço Inox (304, 316, 420)</option>
-                        <option>Aço Carbono (1020, 1045)</option>
-                        <option>Aço Liga (4140, 8620)</option>
-                        <option>Alumínio (todas ligas)</option>
-                        <option>Latão / Cobre / Bronze</option>
-                        <option>Polímeros (Nylon, POM, PTFE)</option>
+                        <option>Aço Carbono / Liga (1020, 1045, 4140)</option>
+                        <option>Alumínio (Ligas 6061, 7075, etc.)</option>
+                        <option>Latão CLA / Cobre / Bronze</option>
+                        <option>Acrílico / Policarbonato</option>
+                        <option>Polímeros (Nylon, POM/Delrin, PTFE)</option>
                         <option>Outro material</option>
                       </select>
                     </div>
 
                     <div>
-                      <label className="block text-xs font-semibold text-slate-300 mb-1.5">
-                        Quantidade Estimada
+                      <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+                        Volume estimado
                       </label>
                       <select
                         value={formData.quantidade}
                         onChange={(e) => setFormData({ ...formData, quantidade: e.target.value })}
-                        className="w-full px-3 py-2.5 rounded-lg bg-slate-950 border border-slate-700 text-white text-xs focus:outline-none focus:border-blue-500"
+                        className="w-full px-3 py-2.5 rounded-md bg-slate-50 border border-slate-300 text-slate-900 text-xs sm:text-sm focus:outline-none focus:border-[#0B192C]"
                       >
                         <option>Protótipo / 1 a 10 peças</option>
                         <option>Lote pequeno (10 a 100 peças)</option>
@@ -241,13 +233,13 @@ Gostaria de solicitar uma cotação para usinagem:
                     </div>
 
                     <div>
-                      <label className="block text-xs font-semibold text-slate-300 mb-1.5">
-                        Tem Desenho Técnico?
+                      <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+                        Desenho técnico
                       </label>
                       <select
                         value={formData.temDesenho}
                         onChange={(e) => setFormData({ ...formData, temDesenho: e.target.value })}
-                        className="w-full px-3 py-2.5 rounded-lg bg-slate-950 border border-slate-700 text-white text-xs focus:outline-none focus:border-blue-500"
+                        className="w-full px-3 py-2.5 rounded-md bg-slate-50 border border-slate-300 text-slate-900 text-xs sm:text-sm focus:outline-none focus:border-[#0B192C]"
                       >
                         <option>Sim (PDF / CAD / STEP)</option>
                         <option>Tenho amostra física</option>
@@ -257,73 +249,71 @@ Gostaria de solicitar uma cotação para usinagem:
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-slate-300 mb-1.5">
-                      Especificações & Requisitos Técnicos
+                    <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+                      Especificações e requisitos técnicos
                     </label>
                     <textarea
                       rows={3}
                       value={formData.detalhes}
                       onChange={(e) => setFormData({ ...formData, detalhes: e.target.value })}
-                      placeholder="Descreva detalhes como tratamentos térmicos/superficiais, tolerâncias, aplicação da peça..."
-                      className="w-full px-3.5 py-2.5 rounded-lg bg-slate-950 border border-slate-700 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-blue-500 transition-colors"
+                      placeholder="Descreva tratamentos térmicos ou superficiais, tolerâncias e aplicação da peça..."
+                      className="w-full px-3.5 py-2.5 rounded-md bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:border-[#0B192C] focus:bg-white transition-colors"
                     />
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full py-3.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold text-sm shadow-xl shadow-blue-950/60 transition-all flex items-center justify-center gap-2 transform hover:-translate-y-0.5"
+                    className="w-full py-3.5 rounded-md bg-[#0B192C] hover:bg-blue-900 text-white font-semibold text-sm transition-colors flex items-center justify-center gap-2"
                   >
-                    <span>Prosseguir para Envio da Cotação</span>
+                    <span>Prosseguir para envio da cotação</span>
                     <ArrowRight className="w-4 h-4" />
                   </button>
 
-                  <div className="text-center text-[11px] text-slate-400">
-                    🔒 Seus dados e arquivos permanecem sob estrita confidencialidade comercial.
-                  </div>
+                  <p className="text-center text-xs text-slate-500">
+                    Seus dados e arquivos técnicos são tratados sob estrita confidencialidade comercial.
+                  </p>
                 </form>
               ) : (
                 <div className="py-8 text-center space-y-6">
-                  <div className="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto border border-emerald-500/40">
-                    <CheckCircle2 className="w-8 h-8" />
+                  <div className="w-16 h-16 rounded-full bg-emerald-50 text-emerald-700 flex items-center justify-center mx-auto border border-emerald-200">
+                    <Check className="w-8 h-8" />
                   </div>
 
                   <div>
-                    <h3 className="text-2xl font-tech font-bold text-white mb-2">
-                      Informações Preparadas com Sucesso!
+                    <h3 className="text-2xl font-bold text-[#0B192C] mb-2">
+                      Informações preparadas com sucesso
                     </h3>
-                    <p className="text-sm text-slate-300 max-w-md mx-auto">
-                      Seu pedido de cotação para <strong>{formData.empresa || formData.nome}</strong> está pronto. Escolha a forma de envio mais conveniente:
+                    <p className="text-sm text-slate-600 max-w-md mx-auto">
+                      Seu pedido de cotação para <strong>{formData.empresa || formData.nome}</strong> está pronto. Escolha o canal de envio:
                     </p>
                   </div>
 
                   <div className="grid sm:grid-cols-2 gap-4 max-w-md mx-auto pt-2">
-                    {/* Send WhatsApp */}
                     <a
                       href={`https://wa.me/${COMPANY_INFO.whatsapp}?text=${getWhatsAppMessage()}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-sm shadow-lg shadow-emerald-950 transition-all"
+                      className="flex items-center justify-center gap-2 py-3 px-5 rounded-md bg-emerald-700 hover:bg-emerald-600 text-white font-semibold text-sm transition-colors"
                     >
                       <MessageSquare className="w-4 h-4" />
                       <span>Enviar no WhatsApp</span>
                     </a>
 
-                    {/* Send Email */}
                     <a
                       href={getMailtoHref()}
-                      className="flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm shadow-lg shadow-blue-950 transition-all"
+                      className="flex items-center justify-center gap-2 py-3 px-5 rounded-md bg-[#0B192C] hover:bg-blue-900 text-white font-semibold text-sm transition-colors"
                     >
                       <Mail className="w-4 h-4" />
-                      <span>Enviar por E-mail</span>
+                      <span>Enviar por e-mail</span>
                     </a>
                   </div>
 
-                  <div className="pt-4 border-t border-slate-800">
+                  <div className="pt-4 border-t border-slate-200">
                     <button
                       onClick={() => setSubmitted(false)}
-                      className="text-xs text-slate-400 hover:text-white underline"
+                      className="text-xs text-slate-500 hover:text-slate-800 underline"
                     >
-                      ← Editar dados do orçamento
+                      Editar dados do orçamento
                     </button>
                   </div>
                 </div>
