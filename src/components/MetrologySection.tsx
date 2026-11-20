@@ -24,16 +24,9 @@ const METROLOGY_PHOTOS: PhotoItem[] = [
   {
     id: 'detalhe',
     src: '/images/metrology/tesa-hite-3d-detalhe.jpg',
-    label: 'Apalpador e cabeçote',
+    label: 'Apalpador e cabeçote 3D',
     title: 'Apalpador de alta sensibilidade',
     caption: 'Inspeção dimensional geométrica e tolerâncias GD&T de precisão',
-  },
-  {
-    id: 'sala',
-    src: '/images/metrology/sala-climatizada-tesa-externa.jpg',
-    label: 'Sala climatizada',
-    title: 'Ambiente controlado a 20°C',
-    caption: 'Estabilidade térmica para calibração e garantia dimensional',
   },
 ];
 
@@ -89,8 +82,8 @@ export const MetrologySection: React.FC<MetrologySectionProps> = ({ onOpenQuoteM
               </div>
             </div>
 
-            {/* Miniaturas de Navegação */}
-            <div className="grid grid-cols-3 gap-3">
+            {/* Miniaturas de Navegação (2 fotos exclusivas da máquina e apalpador) */}
+            <div className="grid grid-cols-2 gap-3">
               {METROLOGY_PHOTOS.map((photo, idx) => {
                 const isActive = selectedPhotoIndex === idx;
                 return (
