@@ -58,11 +58,11 @@ export const MachineryShowcase: React.FC<MachineryShowcaseProps> = ({ onOpenQuot
           
           {/* Machine Photo with Switcher */}
           <div className="lg:col-span-7 flex flex-col gap-3">
-            <div className="relative rounded-lg overflow-hidden border border-slate-800 bg-slate-950">
+            <div className="relative rounded-lg overflow-hidden border border-slate-800 bg-[#070e17] flex items-center justify-center">
               <img
                 src={currentPhoto.src}
                 alt={currentPhoto.title}
-                className="w-full h-[360px] sm:h-[440px] object-cover"
+                className="w-full h-[380px] sm:h-[480px] object-contain p-2"
               />
               <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-slate-950/95 via-slate-950/50 to-transparent pointer-events-none" />
               
