@@ -69,30 +69,30 @@ export const Hero: React.FC<HeroProps> = ({ onOpenQuoteModal }) => {
               Usinagem industrial em São Paulo desde 1992
             </p>
 
-            <h1 className="text-4xl sm:text-5xl xl:text-[56px] font-extrabold tracking-tight text-[#0B192C] leading-[1.1] mb-6">
+            <h1 className="text-3xl sm:text-5xl xl:text-[56px] font-extrabold tracking-tight text-[#0B192C] leading-[1.15] sm:leading-[1.1] mb-5 sm:mb-6">
               Usinagem CNC de alta precisão e produção seriada
             </h1>
 
-            <p className="text-base sm:text-lg text-slate-600 mb-8 leading-relaxed max-w-2xl">
+            <p className="text-sm sm:text-lg text-slate-600 mb-6 sm:mb-8 leading-relaxed max-w-2xl">
               Fabricação de peças técnicas seriadas, especiais e protótipos para os setores automotivo, odontológico, eletrônico e industrial. Estrutura própria com tornos Doosan de ferramenta acionada, centros Romi 4º eixo e sala climatizada de metrologia tridimensional TESA 3D.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
               <button
                 onClick={onOpenQuoteModal}
-                className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-md bg-blue-800 hover:bg-[#0B192C] text-white font-bold text-base shadow-md transition-colors"
+                className="inline-flex items-center justify-center gap-2.5 px-6 sm:px-8 py-3.5 sm:py-4 rounded-md bg-blue-800 hover:bg-[#0B192C] text-white font-bold text-sm sm:text-base shadow-md transition-colors"
               >
                 <span>Solicitar orçamento técnico</span>
-                <ArrowRight className="w-5 h-5" />
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
               
               <a
                 href={`https://wa.me/${COMPANY_INFO.whatsapp}?text=Ol%C3%A1%2C+Alexandre.+Gostaria+de+enviar+um+desenho+t%C3%A9cnico+para+cota%C3%A7%C3%A3o+na+LASEC.`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-md bg-emerald-700 hover:bg-emerald-600 text-white font-bold text-base shadow-md transition-colors"
+                className="inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 sm:py-4 rounded-md bg-emerald-700 hover:bg-emerald-600 text-white font-bold text-sm sm:text-base shadow-md transition-colors"
               >
-                <MessageCircle className="w-5 h-5" />
+                <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5" />
                 <span>Falar via WhatsApp</span>
               </a>
             </div>
@@ -106,7 +106,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenQuoteModal }) => {
               onMouseEnter={() => setIsPaused(true)}
               onMouseLeave={() => setIsPaused(false)}
             >
-              <div className="relative h-[360px] sm:h-[420px] xl:h-[450px] w-full overflow-hidden bg-slate-100">
+              <div className="relative h-[290px] sm:h-[400px] xl:h-[450px] w-full overflow-hidden bg-slate-100">
                 {HERO_SLIDES.map((s, idx) => (
                   <img
                     key={s.src}

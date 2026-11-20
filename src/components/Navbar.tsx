@@ -81,8 +81,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenQuoteModal }) => {
         <div className="w-full max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-10 flex items-center justify-between gap-4">
           
           {/* Prominent Logo & Brand Name */}
-          <a href="#hero" className="flex items-center gap-4 group shrink-0">
-            <div className="h-14 w-22 sm:h-18 sm:w-28 rounded-lg bg-slate-100 border border-slate-300 group-hover:border-blue-800 transition-colors flex items-center justify-center shrink-0 overflow-hidden shadow-xs">
+          <a href="#hero" className="flex items-center gap-2.5 sm:gap-4 group shrink-0">
+            <div className="h-11 w-18 sm:h-16 sm:w-26 rounded-lg bg-slate-100 border border-slate-300 group-hover:border-blue-800 transition-colors flex items-center justify-center shrink-0 overflow-hidden shadow-xs">
               <img
                 src="/images/logo.jpg"
                 alt="LASEC Usinagem de precisão"
@@ -90,15 +90,15 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenQuoteModal }) => {
               />
             </div>
             <div className="flex flex-col">
-              <div className="flex items-center gap-2.5">
-                <span className="text-3xl sm:text-4xl xl:text-[42px] font-black tracking-tight text-[#0B192C] group-hover:text-blue-800 transition-colors leading-none">
+              <div className="flex items-center gap-2">
+                <span className="text-2xl sm:text-3xl xl:text-[40px] font-black tracking-tight text-[#0B192C] group-hover:text-blue-800 transition-colors leading-none">
                   LASEC
                 </span>
-                <span className="text-xs font-bold text-blue-900 bg-blue-50 border border-blue-200 px-2.5 py-0.5 rounded">
+                <span className="text-[10px] sm:text-xs font-bold text-blue-900 bg-blue-50 border border-blue-200 px-1.5 sm:px-2.5 py-0.5 rounded">
                   Desde 1992
                 </span>
               </div>
-              <span className="text-xs sm:text-sm font-semibold text-slate-700 tracking-wide mt-1">
+              <span className="text-[11px] sm:text-sm font-semibold text-slate-700 tracking-wide mt-0.5 sm:mt-1">
                 Usinagem aliada à precisão
               </span>
             </div>
@@ -159,37 +159,50 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenQuoteModal }) => {
 
         </div>
 
-        {/* Mobile Dropdown */}
+        {/* Mobile / Tablet Dropdown Drawer */}
         {mobileMenuOpen && (
-          <div className="xl:hidden bg-white border-b border-slate-200 px-5 py-4">
+          <div className="xl:hidden bg-white border-b border-slate-200 px-4 sm:px-6 py-4 shadow-xl animate-in fade-in slide-in-from-top-2 duration-200">
             <nav className="flex flex-col gap-1">
               {navLinks.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
                   onClick={(e) => handleLinkClick(e, link.href)}
-                  className="px-3 py-2.5 rounded-md text-sm font-medium text-slate-700 hover:text-[#0B192C] hover:bg-slate-50"
+                  className="px-3.5 py-3 rounded-lg text-sm sm:text-base font-semibold text-slate-800 hover:text-blue-900 hover:bg-slate-50 transition-colors flex items-center justify-between"
                 >
-                  {link.label}
+                  <span>{link.label}</span>
+                  <span className="text-slate-400 text-xs">→</span>
                 </a>
               ))}
-              <div className="pt-3 border-t border-slate-200 flex flex-col gap-2 mt-2">
+              
+              <div className="pt-3 border-t border-slate-200 flex flex-col gap-2.5 mt-2">
                 <button
                   onClick={() => {
                     setMobileMenuOpen(false);
                     onOpenQuoteModal();
                   }}
-                  className="w-full py-2.5 rounded-md bg-[#0B192C] text-white text-sm font-semibold"
+                  className="w-full py-3.5 rounded-lg bg-blue-800 hover:bg-[#0B192C] text-white text-sm font-bold shadow-sm transition-colors flex items-center justify-center gap-2"
                 >
-                  Solicitar orçamento técnico
+                  <span>Solicitar orçamento técnico</span>
+                  <ArrowUpRight className="w-4 h-4" />
                 </button>
+                
                 <a
                   href={`https://wa.me/${COMPANY_INFO.whatsapp}?text=Ol%C3%A1%2C+Alexandre.+Gostaria+de+solicitar+um+or%C3%A7amento+de+usinagem.`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full py-2.5 text-center rounded-md border border-slate-300 text-slate-700 text-sm font-medium"
+                  className="w-full py-3 text-center rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-bold shadow-xs transition-colors flex items-center justify-center gap-2"
                 >
-                  WhatsApp: {COMPANY_INFO.whatsappDisplay}
+                  <MessageCircle className="w-4 h-4" />
+                  <span>Falar no WhatsApp ({COMPANY_INFO.whatsappDisplay})</span>
+                </a>
+
+                <a
+                  href={`tel:${COMPANY_INFO.phoneRaw}`}
+                  className="w-full py-2.5 text-center rounded-lg border border-slate-300 text-slate-700 hover:bg-slate-50 text-xs font-semibold flex items-center justify-center gap-2 transition-colors"
+                >
+                  <Phone className="w-3.5 h-3.5 text-blue-700" />
+                  <span>Ligar: {COMPANY_INFO.phonePrimary} / {COMPANY_INFO.phoneSecondary}</span>
                 </a>
               </div>
             </nav>

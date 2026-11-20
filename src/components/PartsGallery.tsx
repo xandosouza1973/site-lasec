@@ -40,13 +40,13 @@ export const PartsGallery: React.FC<PartsGalleryProps> = ({ onSelectPartForQuote
             </p>
           </div>
 
-          {/* Filter Pills */}
-          <div className="flex flex-wrap items-center gap-2">
+          {/* Filter Pills with Horizontal Scroll on Mobile */}
+          <div className="flex items-center gap-2 overflow-x-auto pb-2 -mx-5 px-5 sm:mx-0 sm:px-0 sm:flex-wrap scrollbar-none">
             {filterButtons.map((btn) => (
               <button
                 key={btn.id}
                 onClick={() => setFilter(btn.id)}
-                className={`px-3.5 py-2 rounded-md text-xs font-semibold transition-colors ${
+                className={`px-3.5 py-2 rounded-md text-xs font-semibold whitespace-nowrap shrink-0 transition-colors ${
                   filter === btn.id
                     ? 'bg-[#0B192C] text-white'
                     : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
@@ -128,53 +128,53 @@ export const PartsGallery: React.FC<PartsGalleryProps> = ({ onSelectPartForQuote
           onClick={() => setSelectedItem(null)}
         >
           <div
-            className="bg-white border border-slate-200 rounded-xl max-w-4xl w-full overflow-hidden shadow-2xl relative"
+            className="bg-white border border-slate-200 rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative"
             onClick={(e) => e.stopPropagation()}
           >
             <button
               onClick={() => setSelectedItem(null)}
-              className="absolute top-4 right-4 z-10 p-2 rounded-full bg-white text-slate-700 hover:text-slate-950 border border-slate-200 shadow-sm"
+              className="absolute top-3 right-3 z-10 p-2 rounded-full bg-white/90 text-slate-700 hover:text-slate-950 border border-slate-200 shadow-sm"
             >
               <X className="w-5 h-5" />
             </button>
 
-            <div className="max-h-[65vh] bg-slate-100 overflow-hidden flex items-center justify-center">
+            <div className="max-h-[50vh] sm:max-h-[60vh] bg-slate-950 overflow-hidden flex items-center justify-center p-2">
               <img
                 src={selectedItem.image}
                 alt={selectedItem.title}
-                className="max-h-[65vh] w-auto object-contain"
+                className="max-h-[50vh] sm:max-h-[60vh] w-auto object-contain"
               />
             </div>
 
-            <div className="p-6 sm:p-8">
+            <div className="p-5 sm:p-8">
               <div className="flex items-center justify-between gap-4 mb-2">
                 <span className="text-xs uppercase tracking-wider text-blue-800 font-semibold">
                   {selectedItem.categoryLabel}
                 </span>
                 <span className="text-xs text-slate-500">LASEC Usinagem de precisão</span>
               </div>
-              <h3 className="text-xl sm:text-2xl font-bold text-[#0B192C] mb-2">
+              <h3 className="text-lg sm:text-2xl font-bold text-[#0B192C] mb-2">
                 {selectedItem.title}
               </h3>
-              <p className="text-sm text-slate-600 mb-5">
+              <p className="text-xs sm:text-sm text-slate-600 mb-4 sm:mb-5">
                 {selectedItem.description}
               </p>
 
-              <div className="flex flex-wrap gap-2 mb-6">
+              <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-5 sm:mb-6">
                 {selectedItem.specs.map((spec, i) => (
                   <span
                     key={i}
-                    className="text-xs text-slate-700 bg-slate-100 border border-slate-200 px-3 py-1 rounded"
+                    className="text-[11px] sm:text-xs text-slate-700 bg-slate-100 border border-slate-200 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded"
                   >
                     {spec}
                   </span>
                 ))}
               </div>
 
-              <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-200">
+              <div className="flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-end gap-2.5 sm:gap-3 pt-4 border-t border-slate-200">
                 <button
                   onClick={() => setSelectedItem(null)}
-                  className="px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900"
+                  className="px-4 py-2.5 text-xs sm:text-sm font-semibold text-slate-600 hover:text-slate-900 border border-slate-200 sm:border-transparent rounded-md text-center"
                 >
                   Fechar
                 </button>
@@ -184,7 +184,7 @@ export const PartsGallery: React.FC<PartsGalleryProps> = ({ onSelectPartForQuote
                     setSelectedItem(null);
                     onSelectPartForQuote(title);
                   }}
-                  className="px-5 py-2.5 rounded-md bg-[#0B192C] hover:bg-blue-900 text-white text-sm font-semibold transition-colors"
+                  className="px-5 py-3 rounded-md bg-[#0B192C] hover:bg-blue-900 text-white text-xs sm:text-sm font-semibold transition-colors text-center shadow-xs"
                 >
                   Solicitar orçamento deste modelo
                 </button>

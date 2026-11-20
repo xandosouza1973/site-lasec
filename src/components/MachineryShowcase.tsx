@@ -84,8 +84,8 @@ export const MachineryShowcase: React.FC<MachineryShowcaseProps> = ({ onOpenQuot
               </div>
             </div>
 
-            {/* Thumbnails Navigator */}
-            <div className="grid grid-cols-4 gap-2.5">
+            {/* Thumbnails Navigator - 3 Fotos Reais do Torno Lynx */}
+            <div className="grid grid-cols-3 gap-2.5">
               {LYNX_PHOTOS.map((photo, idx) => (
                 <button
                   key={photo.id}

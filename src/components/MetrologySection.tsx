@@ -60,22 +60,22 @@ export const MetrologySection: React.FC<MetrologySectionProps> = ({ onOpenQuoteM
               <img
                 src={currentPhoto.src}
                 alt={currentPhoto.title}
-                className="w-full h-[440px] sm:h-[520px] object-contain p-2"
+                className="w-full h-[320px] sm:h-[460px] lg:h-[520px] object-contain p-2"
               />
               <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-slate-950/95 via-slate-950/60 to-transparent pointer-events-none" />
 
-              <div className="absolute bottom-4 left-4 right-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 right-3 sm:right-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-3">
                 <div>
-                  <div className="text-white font-bold text-sm sm:text-base">
+                  <div className="text-white font-bold text-xs sm:text-base">
                     {currentPhoto.title}
                   </div>
-                  <div className="text-xs text-slate-300 mt-0.5">
+                  <div className="text-[11px] sm:text-xs text-slate-300 mt-0.5 line-clamp-1 sm:line-clamp-none">
                     {currentPhoto.caption}
                   </div>
                 </div>
                 <button
                   onClick={onOpenQuoteModal}
-                  className="px-4 py-2 rounded-md bg-white hover:bg-slate-100 text-[#0B192C] text-xs font-semibold shrink-0 transition-colors shadow-sm"
+                  className="px-3 sm:px-4 py-1.5 sm:py-2 rounded-md bg-white hover:bg-slate-100 text-[#0B192C] text-xs font-semibold shrink-0 transition-colors shadow-sm self-start sm:self-auto"
                 >
                   Solicitar laudo dimensional
                 </button>
