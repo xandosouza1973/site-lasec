@@ -23,11 +23,6 @@ const HERO_SLIDES = [
     caption: 'Corpo usinado com eixos cruzados, canais de vedação e furo central escalonado',
   },
   {
-    src: '/images/hq/parque-fabril-panoramica.jpg',
-    tag: 'Parque fabril próprio',
-    caption: 'Instalações no Bairro do Limão com centros Romi Discovery e tornos CNC',
-  },
-  {
     src: '/images/hq/lote-seriado-recartilhado.jpg',
     tag: 'Produção seriada',
     caption: 'Lotes seriados com recartilhado uniforme, roscas calibradas e inspeção dimensional',

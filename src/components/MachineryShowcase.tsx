@@ -15,13 +15,6 @@ const LYNX_PHOTOS = [
     tag: 'Doosan Lynx 220LM',
   },
   {
-    id: 'panoramica',
-    title: 'Visão geral do parque fabril',
-    subtitle: 'Centros Romi Discovery 4º eixo e tornos Doosan',
-    src: '/images/hq/parque-fabril-panoramica.jpg',
-    tag: 'Parque fabril',
-  },
-  {
     id: 'interno',
     title: 'Usinagem interna e torre de ferramentas',
     subtitle: 'Setup para furação radial, axial e fresamento conjugados',
